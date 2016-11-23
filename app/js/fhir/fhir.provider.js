@@ -5,15 +5,26 @@
 // https://github.com/FHIR/fhir.js/blob/master/src/adapters/angularjs.js
 
 (function () {
+  'use strict';
 
   //var mkFhir = require('../fhir');
 
   angular.module('ng-fhir')
-    .provider('fhirProvider', SmartProvider);
+    .provider('fhirClient', FHIRClientProvider);
 
-  function SmartProvider() {
-    var serviceUrl = "https://fhir-open-api-dstu2.smarthealthit.org";
-    var patientId = "1137192";
+  function FHIRClientProvider() {
+    var params = {
+      serviceUrl: "https://fhir-open-api-dstu2.smarthealthit.org",
+      patientId: "1137192"
+    };
+
+    this.setParams = function(newParams) {
+      params = newParams;
+    };
+
+    this.$get = function() {
+      return FHIR.client(params);
+    };
 
 //     var prov;
 
@@ -23,12 +34,6 @@
 //         return FHIR(prov, adapter);
 //       }
 //     };
-
-    return {
-      $get: function ($http, $q) {
-        return FHIR.client({serviceUrl: serviceUrl, patientId: patientId});
-      }
-    }
 
   }
 

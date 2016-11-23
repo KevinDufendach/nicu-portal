@@ -8,9 +8,9 @@
   // service
   angular
     .module('app')
-    .service('smartInterpreter', SmartInterpreter);
+    .service('fhirInterpreter', FhirInterpreter);
 
-  function SmartInterpreter() {
+  function FhirInterpreter() {
     return {
       getPatientName: getPatientName,
       getMedicationName: getMedicationName,
