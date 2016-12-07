@@ -1,16 +1,27 @@
 (function () {
   'use strict';
 
-  angular.module('app.care_team', ['ngRoute'])
+  angular
+    .module('app.care_team')
 
-    .config(['$routeProvider', function ($routeProvider) {
-      $routeProvider.when('/care_team', {
-        templateUrl: 'care_team/care_team.html',
-        controller: 'CareTeamCtrl'
-      });
-    }])
+    .controller('CareTeamCtrl', CareTeamCtrl);
 
-    .controller('CareTeamCtrl', [function () {
+  function CareTeamCtrl(careTeamService) {
+    var vm = this;
+    vm.team = [];
 
-    }]);
+    initialize();
+
+    function initialize() {
+      vm.team = careTeamService.getTeam().then(
+        function (data) {
+          vm.team = data;
+        },
+        function (data, er) {
+          console.log('unable to get team');
+        }
+      );
+    }
+
+  }
 })();

@@ -12,6 +12,7 @@
     'ngMaterial',
     'ngMessages',
     'ngAnimate',
-    'ngRoute'
+    'ngRoute',
+    'ngSanitize'
   ])
 })();

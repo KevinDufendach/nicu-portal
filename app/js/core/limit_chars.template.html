@@ -1,0 +1,3 @@
+{{vm.pretext}}<span ng-if="vm.shouldTruncate">
+<a href ng-hide="vm.showDetails" ng-click="vm.showDetails = true">[{{vm.moreText}}]</a>{{showDetails}}<span
+    ng-show="vm.showDetails">{{vm.posttext}}<a ng-if="vm.allowShowLess" href ng-click="vm.showDetails = false">[{{vm.lessText}}]</a></span></span>

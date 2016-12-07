@@ -35,18 +35,13 @@
 
 <!---------------------------------------------------------------------------->
 
-<div layout="column" layout-fill>
+<div layout="column" layout-fill ng-cloak>
   <header>
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <h2>My NICU Journey</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" aria-label="provide feedback">
-          <md-icon class="material_icons">feedback</md-icon>
-        </md-button>
-        <md-menu>
-          <md-button class="md-icon-button" aria-label="menu" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-            <md-icon class="material_icons">menu</md-icon>
+    <md-toolbar class="md-hue-2 md-whiteframe-z2" data-ng-controller="MenuCtrl as vm">
+      <div class="md-toolbar-tools" >
+        <md-menu class="md-hue-1">
+          <md-button class="md-icon-button" aria-label="menu" ng-click="vm.openMenu($mdOpenMenu, $event)">
+            <md-icon md-menu-origin class="material_icons">menu</md-icon>
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
@@ -68,9 +63,16 @@
                 {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
               </md-button>
             </md-menu-item>
+            <md-menu-item>
+              <div>Angular seed app: v<span app-version></span></div>
+            </md-menu-item>
           </md-menu-content>
         </md-menu>
-
+        <h2>My NICU Journey</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="provide feedback">
+          <md-icon class="material_icons">feedback</md-icon>
+        </md-button>
       </div>
 
     </md-toolbar>
@@ -78,14 +80,11 @@
   <md-content flex>
     <div ng-view flex></div>
 
-    <div>Angular seed app: v<span app-version></span></div>
-
-
-
+    <!--<div>Angular seed app: v<span app-version></span></div>-->
   </md-content>
 
   <footer>
-    <md-toolbar class="md-primary" layout="row">
+    <md-toolbar layout="row" md-theme="ccpurple">
       <md-nav-bar md-selected-nav-item="currentNavItem"
                   nav-bar-aria-label="navigation links"
                   flex>
@@ -105,23 +104,20 @@
           <div class="material-icons">linked_camera</div>
         </md-nav-item>
       </md-nav-bar>
-      <!--<md-button class="md-icon-button">menu</md-button>-->
     </md-toolbar>
   </footer>
 </div>
 
-
 <!-- Angular Dependencies -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.min.js"></script>
 
 <!--Angular Material Dependencies-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 
 <!-- Bootstrapping -->
@@ -130,6 +126,10 @@
 <!-- core modules -->
 <script src="js/core/core.module.js"></script>
 <script src="js/core/core.palette.js"></script>
+
+<!-- layout -->
+<script src="js/menu/menu.module.js"></script>
+<script src="js/menu/menu.js"></script>
 
 
 <!--SMART on FHIR-->
@@ -147,11 +147,20 @@
 <script src="js/pt/pt.config.js"></script>
 <script src="js/pt/pt.js"></script>
 
+<!--care team module-->
+<script src="care_team/care_team.module.js"></script>
+<script src="care_team/care_team.js"></script>
+<script src="care_team/care_team.service.js"></script>
+
+<!--resources-->
+<script src="js/core/limit_chars.filter.js"></script>
+<script src="js/core/limit_chars.directive.js"></script>
+<script src="js/core/tools.title-case.filter.js"></script>
+
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
 <script src="view2/view2.js"></script>
 <script src="journey/journey.js"></script>
-<script src="care_team/care_team.js"></script>
 <script src="nicview/nicview.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>

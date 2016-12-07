@@ -14,7 +14,7 @@
   function FhirProviderConfig(fhirClientProvider) {
     fhirClientProvider.setParams({
       serviceUrl: "https://fhir-open-api-dstu2.smarthealthit.org",
-      patientId: "7321938"
+      patientId: "1137192"
     });
   }
 

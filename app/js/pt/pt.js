@@ -2,18 +2,19 @@
  * Created by Kevin on 11/16/2016.
  */
 
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('app.pt')
-    .controller('Patient',Patient);
+    .controller('Patient', Patient);
 
-  function Patient(fhirInterpreter, fhirClient, $scope) {
+  function Patient(fhirInterpreter, fhirClient, $scope, $q) {
     var vm = this;
     vm.title = 'MyTitle';
     vm.conditions = "";
     vm.getConditions = getConditions;
+    vm.meds = ['myMed'];
 
     vm.smartpt = {};
     vm.pt = {
@@ -21,6 +22,8 @@
       medName: {},
       observations: []
     };
+
+    vm.fhirPt = {};
 
     initialize();
 
@@ -32,14 +35,23 @@
 
       // Create a patient banner by fetching + rendering demographics
       vm.smartpt.read().then(
-        function(pt) {
-        vm.pt.name = fhirInterpreter.getPatientName(pt);
-        $scope.$apply();
-      },
-        function(pt, status) {
+        function (pt) {
+          vm.fhirPt = pt;
+          vm.pt.name = fhirInterpreter.getPatientName(pt);
+          $scope.$apply();
+        },
+        function (pt, status) {
           console.log('Error getting patient name: [' + pt + ',' + status + ']');
         }
       );
+
+      getMeds(vm.smartpt).then(
+        function(meds) {
+          vm.meds = meds;
+          $scope.$apply;
+        }
+      )
+
     }
 
     function getConditions() {
@@ -47,8 +59,34 @@
       return fhirClient.patient.api.search({type: 'Condition'});
     }
 
-    function getGestAge() {
-      return fhirClient.patient.api.search({type: 'Observation'});
+    // function getGestAge() {
+    //   return fhirClient.patient.api.search({type: 'Observation'});
+    // }
+
+
+    function getMeds(smartPt) {
+
+      return $q(function(resolve, reject) {
+        // A more advanced query: search for active Prescriptions, including med details
+        smartPt.api.fetchAllWithReferences({type: "MedicationOrder"},["MedicationOrder.medicationReference"]).then(function(results, refs) {
+          var medList = [];
+
+          results.forEach(function(prescription){
+            if (prescription.medicationCodeableConcept) {
+              medList.push(prescription.medicationCodeableConcept.coding);
+            } else if (prescription.medicationReference) {
+              var med = refs(prescription, prescription.medicationReference);
+              medList.push(med && med.code.coding || []);
+            }
+          });
+
+          resolve(medList);
+        });
+      });
+
+
+
     }
+
   }
 })();

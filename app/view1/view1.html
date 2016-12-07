@@ -1,12 +1,13 @@
 <div>
- Today I am ...
+ <div ng-controller="Patient as vm">
+  <h1>{{vm.pt.name}}</h1>
 
- <div ng-controller="Patient as smartPtCtrl">
-  <h1>Name: {{smartPtCtrl.pt.name}}</h1>
+  <textarea>{{vm.fhirPt | json }}</textarea>
 
-  <textarea>
-   {{smartPtCtrl.smartpt}}
-  </textarea>
+  <h2>Current status</h2>
+  <p>Weight:</p>
+
+  <textarea>{{vm.meds | json }}</textarea>
 
  </div>
 </div>

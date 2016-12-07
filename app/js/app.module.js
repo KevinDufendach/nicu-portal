@@ -9,7 +9,8 @@
     // stores references to Angular libraries and other reusable code
     'app.core',
 
-    'app.components'
+    'app.components',
+    'app.layout'
   ]);
 
 })();
