@@ -15,6 +15,7 @@
     vm.conditions = "";
     vm.getConditions = getConditions;
     vm.meds = ['myMed'];
+    vm.obsList = ['myObs'];
 
     vm.smartpt = {};
     vm.pt = {
@@ -52,6 +53,14 @@
         }
       )
 
+      getObservations(vm.smartpt).then(
+        function(obsList) {
+          vm.obsList = obsList;
+          $scope.$apply;
+        }
+      )
+
+
     }
 
     function getConditions() {
@@ -68,6 +77,8 @@
 
       return $q(function(resolve, reject) {
         // A more advanced query: search for active Prescriptions, including med details
+
+        //noinspection JSUnresolvedFunction
         smartPt.api.fetchAllWithReferences({type: "MedicationOrder"},["MedicationOrder.medicationReference"]).then(function(results, refs) {
           var medList = [];
 
@@ -83,9 +94,26 @@
           resolve(medList);
         });
       });
+    }
 
+    function getObservations(smartPt) {
 
+      return $q(function(resolve, reject) {
+      //   // A more advanced query: search for active Prescriptions, including med details
+      //
+      //   //noinspection JSUnresolvedFunction
+        smartPt.api.fetchAllWithReferences({type: "Observation"},["Observation.valueCodeableConcept"]).then(function(results, refs) {
+          var obsList = [];
 
+          results.forEach(function(obs){
+            if (obs.valueCodeableConcept) {
+              obsList.push(obs.valueCodeableConcept.coding);
+            }
+          });
+
+          resolve(results);
+        });
+      });
     }
 
   }
