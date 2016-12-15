@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Angular Test with SMART on FHIR</title>
+</head>
+<body ng-app="app" ng-controller="mainCtrl as ctrl">
+
+Angular {{3-2}}s loaded
+
+<h2>Error</h2>
+<div>
+  {{error | json}}
+</div>
+
+<h2>Patients</h2>
+<textarea rows="60" cols="80">
+  {{patients | json}}
+</textarea>
+
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/fhir.js/dist/ngFhir.js"></script>
+<script src="/src/client/app/pt/AngularJS-Adapter.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<md-content flex layout-padding>
+  <div ng-controller="Patient as vm">
+    <h1>{{vm.getName(vm.pt)}}</h1>
+
+    <div layout-gt-xs="row">
+      <md-input-container class="md-block">
+        <label>Type</label>
+        <md-select ng-model="vm.queryType">
+          <md-option ng-repeat="res in vm.resources" value="{{res.type}}">
+            {{res.type}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-xs>
+        <label>Query</label>
+        <input ng-model="vm.queryText">
+      </md-input-container>
+      <md-button ng-click="vm.performSearch()" class="md-primary">Search</md-button>
+    </div>
+    <div>
+      <h5>Search results:</h5>
+      <md-button ng-repeat="pt in vm.patients" ng-click="vm.activatePatient(pt.resource)" class="md-raised">{{vm.getName(pt.resource)}}</md-button>
+    </div>
+
+    <div>
+      <textarea rows="20" cols="60">{{vm.patients | json}}</textarea>
+    </div>
+
+    <textarea>{{vm.fhirPt | json }}</textarea>
+
+    <h2>Current status</h2>
+    <p>Weight:</p>
+    <div>
+      <textarea rows="5" cols="50">{{vm.obsList | json }}</textarea>
+    </div>
+
+  </div>
+  <div flex></div>
+  <div layout-align="center center" layout="row">
+    <img src="/content/images/CCHMC_CBI_TAG_TM_RGB_400px_lores.jpg">
+
+  </div>
+</md-content>
