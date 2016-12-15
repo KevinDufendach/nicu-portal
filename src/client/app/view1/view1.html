@@ -18,12 +18,36 @@
       <md-button ng-click="vm.performSearch()" class="md-primary">Search</md-button>
     </div>
     <div>
+      <md-button ng-repeat="sample in vm.sampleSearches" ng-click="vm.loadSample(sample)">{{sample.display}}</md-button>
+    </div>
+    <div>
       <h5>Search results:</h5>
-      <md-button ng-repeat="pt in vm.patients" ng-click="vm.activatePatient(pt.resource)" class="md-raised">{{vm.getName(pt.resource)}}</md-button>
+      <md-button ng-repeat="pt in vm.patients" ng-click="vm.activatePatient(pt.resource)" class="md-raised">
+        {{vm.getName(pt.resource)}}
+      </md-button>
     </div>
 
+    <md-button ng-click="vm.loadWeights()">get weights</md-button>
+    <table class="md-table">
+      <tr>
+        <th>Date</th>
+        <th>Value</th>
+        <th>Units</th>
+      </tr>
+      <tr ng-repeat="wt in vm.weights">
+        <td>{{wt.effectiveDateTime}}</td>
+        <td>{{wt.valueQuantity.value}}</td>
+        <td>{{wt.valueQuantity.unit}}</td>
+      </tr>
+    </table>
+    <p>End weights...</p>
+
     <div>
-      <textarea rows="20" cols="60">{{vm.patients | json}}</textarea>
+      <textarea rows="20" cols="80">{{vm.patients | json}}</textarea>
+    </div>
+    <h2>Test query</h2>
+    <div>
+      <textarea rows="20" cols="80">{{vm.queryResults | json}}</textarea>
     </div>
 
     <textarea>{{vm.fhirPt | json }}</textarea>

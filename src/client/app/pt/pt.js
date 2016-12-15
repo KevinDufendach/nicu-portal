@@ -19,6 +19,7 @@
     vm.meds = ['myMed'];
     vm.obsList = ['myObs'];
     vm.patients = [];
+    vm.selectedPatient = -1;
     vm.resources = [
       {type: 'name'},
       {type: 'identifier'}
@@ -26,6 +27,36 @@
     vm.queryType = vm.resources[0].type;
     vm.queryText = 'billie';
     vm.pt = {};
+    vm.weights = [];
+    vm.loadWeights = loadWeights;
+
+    vm.sampleSearches = [
+      {
+        display: 'Aaron Alexis (wts)',
+        type: 'identifier',
+        query: '9995679'
+      },
+      {
+        display: 'Angela Montgomery (wts)',
+        type: 'identifier',
+        query: '7777705'
+      },
+      {
+        display: 'Billie Himston (bili)',
+        type: 'name',
+        query: 'billie'
+      },
+      {
+        display: 'query: william',
+        type: 'name',
+        query: 'william'
+      }
+    ];
+    vm.loadSample = function(sample) {
+      vm.queryType = sample.type;
+      vm.queryText = sample.query;
+      vm.performSearch();
+    };
 
     vm.getName = function (pt) {
       return (fhirInterpreter.getPatientName(pt));
@@ -45,12 +76,77 @@
       $fhir.search(searchArgs).then(
         function (successData) {
           vm.patients = successData.data.entry;
+
+          if (vm.patients.length > 0) {
+            vm.selectedPatient = 0;
+            vm.pt = vm.patients[vm.selectedPatient].resource;
+          }
         },
         function (failData) {
           var t = failData;
         }
       );
     };
+
+    var searchList = [
+      {
+        type: 'Observation',
+        query: {
+          subject: '7321938'
+        }
+      },
+      {
+        type: 'Observation',
+        query: {
+          subject: '7321938',
+          code: '18185-9'
+        }
+      },
+      {
+        type: 'Observation',
+        query: {
+          subject: '9995679',
+          code: '3141-9'
+        }
+      }
+
+    ];
+
+    performTestQuery();
+
+    function performTestQuery() {
+      $fhir.search(searchList[2]).then(
+        function (successData) {
+          vm.queryResults = successData.data;
+        }
+      )
+    }
+
+    function getSubjectId(fhirPt) {
+      return (fhirPt.id);
+    }
+
+    function loadWeights() {
+      var search = {
+        type: 'Observation',
+        query: {
+          subject: getSubjectId(vm.pt),
+          code: '3141-9'
+        }
+      };
+
+      $fhir.search(search).then(
+        // get weights from search, parse and place into vm.weights
+        function (successData) {
+          vm.weights = [];
+          for (var i = 0; i < successData.data.total; i++) {
+            vm.weights[i] = successData.data.entry[i].resource;
+          }
+        }
+      )
+
+    }
+
   }
 
 //
