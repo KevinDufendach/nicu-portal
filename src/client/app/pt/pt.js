@@ -32,17 +32,17 @@
 
     vm.sampleSearches = [
       {
-        display: 'Aaron Alexis (wts)',
+        display: 'Aaron (wts)',
         type: 'identifier',
         query: '9995679'
       },
       {
-        display: 'Angela Montgomery (wts)',
+        display: 'Angela (wts)',
         type: 'identifier',
         query: '7777705'
       },
       {
-        display: 'Billie Himston (bili)',
+        display: 'Billie',
         type: 'name',
         query: 'billie'
       },
