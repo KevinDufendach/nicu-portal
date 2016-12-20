@@ -1,15 +1,15 @@
 <div layout-margin data-ng-controller="CareTeamCtrl as vm">
   <h1>My Care team</h1>
   <md-card data-ng-repeat="person in vm.team">
-    <md-card-title>
+    <md-card-title layout-padding>
       <md-card-title-text>
         <span class="md-title">{{person.name}}</span>
         <span class="md-subhead">{{person.role.display | titleCase }}</span>
         <p>{{person.role.description}}</p>
-        <p>
-          <limit-chars content="{{person.role.description}}" max-length=140 more-text="..."
-                       allow-show-less="false"></limit-chars>
-        </p>
+        <!--<p>-->
+          <!--<limit-chars content="{{person.role.description}}" max-length=140 more-text="..."-->
+                       <!--allow-show-less="false"></limit-chars>-->
+        <!--</p>-->
       </md-card-title-text>
       <md-card-title-media>
         <div class="md-media-lg card-media">

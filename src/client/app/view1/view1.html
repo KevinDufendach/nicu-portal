@@ -18,7 +18,9 @@
       <md-button ng-click="vm.performSearch()" class="md-primary">Search</md-button>
     </div>
     <div>
-      <md-button ng-repeat="sample in vm.sampleSearches" ng-click="vm.loadSample(sample)">{{sample.display}}</md-button>
+      <md-button ng-repeat="sample in vm.sampleSearches" ng-click="vm.loadSample(sample)" class="md-raised">
+        {{sample.display}}
+      </md-button>
     </div>
     <div>
       <h5>Search results:</h5>
@@ -36,7 +38,7 @@
       </tr>
       <tr ng-repeat="wt in vm.weights">
         <td>{{wt.effectiveDateTime}}</td>
-        <td>{{wt.valueQuantity.value}}</td>
+        <td>{{wt.valueQuantity.value | number : 1}}</td>
         <td>{{wt.valueQuantity.unit}}</td>
       </tr>
     </table>
