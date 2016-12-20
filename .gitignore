@@ -10,9 +10,9 @@ tmp
 app/js/layout/
 app/resources/
 
-# Ignore compiled fhir.js
+# Ignore compiled fhir.js - will keep in place while waiting for bower version of fhir
 ##################
-fhir.js/
+# fhir.js/
 
 # Ignore Visual Studio  Project #
 ###################
