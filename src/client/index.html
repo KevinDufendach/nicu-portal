@@ -23,15 +23,16 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,400italic,700" rel="stylesheet"
         type="text/css">
 
+  <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css" rel="stylesheet">
+
   <!-- inject-vendor:css -->
-  <link href="/bower_components/angular-material/angular-material.min.css" rel="stylesheet">
   <!-- endinject -->
 
   <!-- inject:css -->
-  <link rel="stylesheet" href="/src/client/content/styles.css">
+  <link rel="stylesheet" href="/content/styles.css">
   <!-- endinject -->
 </head>
-<body>
+<body layout layout-align="center center">
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -39,8 +40,8 @@
 <![endif]-->
 
 <!---------------------------------------------------------------------------->
-
-<div layout="column" layout-fill ng-cloak>
+<!--<div flex></div>-->
+<div layout="column" ng-cloak layout-fill class="max-width" md-whiteframe="3">
   <header>
     <md-toolbar class="md-hue-2 md-whiteframe-z2" data-ng-controller="MenuCtrl as vm">
       <div class="md-toolbar-tools">
@@ -125,79 +126,91 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>-->
 
 <!--inject-vendor:js -->
-<script src="/bower_components/angular/angular.js"></script>
-<script src="/bower_components/angular-aria/angular-aria.js"></script>
-<script src="/bower_components/angular-animate/angular-animate.js"></script>
-<script src="/bower_components/angular-messages/angular-messages.js"></script>
-<script src="/bower_components/angular-route/angular-route.js"></script>
-<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="/bower_components/angular-material/angular-material.js"></script>
+<!--Local Working Dependencie-->
+<!--<script src="/bower_components/angular/angular.js"></script>-->
+<!--<script src="/bower_components/angular-aria/angular-aria.js"></script>-->
+<!--<script src="/bower_components/angular-animate/angular-animate.js"></script>-->
+<!--<script src="/bower_components/angular-messages/angular-messages.js"></script>-->
+<!--<script src="/bower_components/angular-route/angular-route.js"></script>-->
+<!--<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>-->
+<!--<script src="/bower_components/angular-material/angular-material.js"></script>-->
+
+
+<!-- Angular Material Dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.js"></script>
 <!--endinject -->
 
 <!-- inject:js -->
 <!-- Bootstrapping -->
-<script src="/src/client/app/app.module.js"></script>
-<script src="/src/client/app/app.controller.js"></script>
+<script src="/app/app.module.js"></script>
+<script src="/app/app.controller.js"></script>
 
 <!--Bootstrap components-->
-<script src="/src/client/app/components/components.module.js"></script>
+<script src="/app/components/components.module.js"></script>
 
 <!-- core modules -->
-<script src="/src/client/app/core/core.module.js"></script>
-<script src="/src/client/app/core/core.palette.js"></script>
-<script src="/src/client/app/core/core.config.js"></script>
+<script src="/app/core/core.module.js"></script>
+<script src="/app/core/core.palette.js"></script>
+<script src="/app/core/core.config.js"></script>
 
 <!-- layout -->
-<script src="/src/client/app/menu/menu.module.js"></script>
-<script src="/src/client/app/menu/menu.js"></script>
+<script src="/app/menu/menu.module.js"></script>
+<script src="/app/menu/menu.js"></script>
 
 <!--SMART on FHIR-->
 <!--<script src="https://rawgithub.com/smart-on-fhir/client-js/master/dist/fhir-client.js"></script>-->
 <!--<script src="https://cdn.rawgit.com/smart-on-fhir/client-js/v0.1.8/dist/fhir-client.js"></script>-->
 
-<!--<script src="/src/client/app/fhir/fhir-client.js"></script>-->
-<!--<script src="/src/client/app/fhir/fhir.module.js"></script>-->
-<!--<script src="/src/client/app/fhir/fhir.provider.js"></script>-->
+<!--<script src="/app/fhir/fhir-client.js"></script>-->
+<!--<script src="/app/fhir/fhir.module.js"></script>-->
+<!--<script src="/app/fhir/fhir.provider.js"></script>-->
 
 <script src="/fhir.js/dist/ngFhir.js"></script>
-<script src="/src/client/app/fhir/fhir.module.js"></script>
-<script src="/src/client/app/fhir/fhir.config.js"></script>
-<script src="/src/client/app/fhir/fhir.interpreter.js"></script>
+<script src="/app/fhir/fhir.module.js"></script>
+<script src="/app/fhir/fhir.config.js"></script>
+<script src="/app/fhir/fhir.interpreter.js"></script>
 
 
 <!--patient module-->
-<script src="/src/client/app/pt/pt.module.js"></script>
-<!--<script src="/src/client/app/pt/pt.config.js"></script>-->
-<script src="/src/client/app/pt/pt.js"></script>
+<script src="/app/pt/pt.module.js"></script>
+<!--<script src="/app/pt/pt.config.js"></script>-->
+<script src="/app/pt/pt.js"></script>
 
 <!--care team module-->
-<script src="/src/client/app/care_team/care_team.module.js"></script>
-<script src="/src/client/app/care_team/care_team.js"></script>
-<script src="/src/client/app/care_team/care_team.service.js"></script>
-<script src="/src/client/app/care_team/config.route.js"></script>
+<script src="/app/care_team/care_team.module.js"></script>
+<script src="/app/care_team/care_team.js"></script>
+<script src="/app/care_team/care_team.service.js"></script>
+<script src="/app/care_team/config.route.js"></script>
 
 <!--resources-->
-<script src="/src/client/app/core/limit_chars.filter.js"></script>
-<script src="/src/client/app/core/limit_chars.directive.js"></script>
-<script src="/src/client/app/core/tools.title-case.filter.js"></script>
+<script src="/app/core/limit_chars.filter.js"></script>
+<script src="/app/core/limit_chars.directive.js"></script>
+<script src="/app/core/tools.title-case.filter.js"></script>
 
-<script src="/src/client/app/view1/view1.module.js"></script>
-<script src="/src/client/app/view1/config.route.js"></script>
+<script src="/app/view1/view1.module.js"></script>
+<script src="/app/view1/config.route.js"></script>
 
-<script src="/src/client/app/view2/view2.module.js"></script>
-<script src="/src/client/app/view2/config.route.js"></script>
+<script src="/app/view2/view2.module.js"></script>
+<script src="/app/view2/config.route.js"></script>
 
 
-<script src="/src/client/app/journey/journey.module.js"></script>
-<script src="/src/client/app/journey/config.route.js"></script>
+<script src="/app/journey/journey.module.js"></script>
+<script src="/app/journey/config.route.js"></script>
 
-<script src="/src/client/app/nicview/nicview.module.js"></script>
-<script src="/src/client/app/nicview/config.route.js"></script>
+<script src="/app/nicview/nicview.module.js"></script>
+<script src="/app/nicview/config.route.js"></script>
 
-<script src="/src/client/app/components/version/version.js"></script>
-<script src="/src/client/app/components/version/version-directive.js"></script>
-<script src="/src/client/app/components/version/interpolate-filter.js"></script>
+<script src="/app/components/version/version.js"></script>
+<script src="/app/components/version/version-directive.js"></script>
+<script src="/app/components/version/interpolate-filter.js"></script>
 <!-- endinject -->
-
+<!--<div flex></div>-->
 </body>
 </html>

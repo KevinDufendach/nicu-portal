@@ -2,8 +2,32 @@ runtime: python27
 threadsafe: true
 api_version: 1
 
+skip_files:
+- ^(.*/)?.*/assets/.*$
+- ^(.*/)?.*/build/.*$
+- ^(.*/)?.*/test/.*$
+- ^(.*/)?.*/templates/.*$
+- ^(.*/)?.*/node_modules/.*$
+
+- ^(assets/.*)
+- ^(build/.*)
+- ^(test/.*)
+- ^(templates/.*)
+- ^(node_modules/.*)
+
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.DS_Store$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+
 handlers:
-- url: /src/client/(.+)
+- url: /fhir.js/(.+)
+  static_files: fhir.js/\1
+  upload: fhir.js/.*
+
+- url: /(.+)
   static_files: src/client/\1
   upload: src/client/.*
 

@@ -13,7 +13,7 @@
 
     function getConfig() {
         return {
-            templateUrl: 'app/view2/view2.html'
+            templateUrl: '/app/view2/view2.html'
         };
     }
 })

@@ -13,7 +13,7 @@
 
     function getConfig() {
         return {
-            templateUrl: 'app/journey/journey.html'
+            templateUrl: '/app/journey/journey.html'
         };
     }
 })

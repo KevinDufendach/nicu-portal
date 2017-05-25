@@ -13,7 +13,7 @@
 
   function getConfig() {
     return {
-      templateUrl: 'app/care_team/care_team.html',
+      templateUrl: '/app/care_team/care_team.html',
       controller: 'CareTeamCtrl',
       controllerAs: 'vm'
     };

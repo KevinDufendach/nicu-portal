@@ -13,7 +13,7 @@
 
     function getConfig() {
         return {
-            templateUrl: 'app/nicview/nicview.html'
+            templateUrl: '/app/nicview/nicview.html'
         };
     }
 })

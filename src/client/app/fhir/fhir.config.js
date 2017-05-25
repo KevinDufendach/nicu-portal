@@ -12,7 +12,8 @@
   fhirProvider.$inject = ['$fhirProvider'];
 
   function fhirProvider($fhirProvider) {
-    $fhirProvider.baseUrl = 'https://fhir-open-api-dstu2.smarthealthit.org';
+    // $fhirProvider.baseUrl = 'https://fhir-open-api-dstu2.smarthealthit.org';
+    $fhirProvider.baseUrl = 'https://sb-fhir-dstu2.smarthealthit.org/api/smartdstu2/open';
     // $fhirProvider.baseUrl = 'http://try-fhirplace.hospital-systems.com';
     // $fhirProvider.baseUrl = 'https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/metadata';
     $fhirProvider.auth = {
